@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit User Profile</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:border-0 md:hover:text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="alertDiv" class="hidden items-center p-4 mt-20 mx-4 text-sm text-green-800 rounded-lg bg-green-100"
+        role="alert">
+        <svg id="alertIcon" class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+            <span id="alertTitle" class="font-medium mr-2"></span><span id="alertMessage"></span>
+        </div>
+    </div>
+
+    <!-- user profile -->
+    <div id="psDiv" class="mx-4 lg:mx-0 mb-4 mt-28">
+        <h4
+            class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center wow animate__animated animate__zoomIn">
+            Edit Your Profile</h4>
+    </div>
+
+    <div class="flex justify-center mx-4 lg:mx-0 mb-8">
+        <div href="#" class="block max-w-3xl p-6 bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-lg">
+
+            <form class="min-w-80  md:min-w-96 px-8 py-8 md:py-0" action="/api/v1/users/updateprofile" method="post">
+
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-[#3f3f40]">First name</label>
+                        <input type="text" id="firstName" name="firstName"
+                            class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                            placeholder="John" required />
+                    </div>
+                    <div>
+                        <label for="last_name" class="block mb-2 text-sm font-medium text-[#3f3f40]">Last
+                            name</label>
+                        <input type="text" id="lastName" name="lastName"
+                            class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                            placeholder="Doe" required />
+                    </div>
+                    <div>
+                        <label for="company" class="block mb-2 text-sm font-medium text-[#3f3f40]">Username</label>
+                        <input type="text" id="userName" name="userName"
+                            class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                            placeholder="Flowbite" required />
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-[#3f3f40]">Phone
+                            number</label>
+                        <input type="tel" id="phoneNo" name="phoneNo"
+                            class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                            placeholder="1234567890" required />
+                    </div>
+
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 text-sm font-medium text-[#3f3f40]">Email
+                        address</label>
+                    <input type="email" id="email" name="email"
+                        class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                        placeholder="john.doe@company.com" required />
+                </div>
+
+                <div class="mb-6">
+                    <label for="states" class="block mb-2 text-sm font-medium text-[#3f3f40]">Select
+                        your state</label>
+                    <select id="state" name="state"
+                        class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                        required>
+                        <option value="">Select a State</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="cities" class="block mb-2 text-sm font-medium text-[#3f3f40]">Select
+                        your city</label>
+                    <select id="city" name="city"
+                        class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5"
+                        required>
+                        <option value="">Select a city</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Surat">Surat</option>
+                        <option value="Vadodara">Vadodara</option>
+                        <option value="Gandhinagar">Gandhinagar</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="message" class="block mb-2 text-sm font-medium text-[#3f3f40]">Address</label>
+                    <textarea id="address" name="address" rows="4"
+                        class=" resize-none block p-2.5 w-full text-sm text-[#3f3f40] bg-[#fbf8f7] rounded-lg border border-gray-300 focus:ring-[#555151] focus:border-[#555151]"
+                        placeholder="Enter your addresss here" required></textarea>
+                </div>
+
+                <div class="flex justify-center space-x-4 mt-8">
+                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                        class="block text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-medium rounded-lg text-sm px-5 py-2.5 text-center wow animate__animated animate__pulse animate__delay-1s"
+                        type="button">
+                        Update
+                    </button>
+
+                    <a href="/userprofile"
+                        class="text-[#3f3f40] bg-[#fbf8f7] hover:bg-[#3f3f40] border border-[#3f3f40] hover:text-[#fbf8f7] focus:ring-2 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-2 py-1 md:px-2 md:py-1 lg:px-4 lg:py-2 justify-center wow animate__animated animate__pulse">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div id="popup-modal" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-[#fbf8f7] rounded-lg shadow">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="popup-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure want to
+                        update your profile?</h3>
+                    <form id="updateForm" action="/api/v1/users/updateprofile" method="post" class="inline-block">
+                        <input data-modal-hide="popup-modal" type="submit" value="Yes, I'm sure"
+                            class="text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center" />
+                    </form>
+                    <button data-modal-hide="popup-modal" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium rounded-lg text-[#3f3f40] bg-[#fbf8f7] hover:bg-[#3f3f40] border border-[#3f3f40] hover:text-[#fbf8f7] focus:ring-2 focus:outline-none focus:ring-[#5a5a5c] font-semibold">No,
+                        cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        var firstName, lastName;
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            firstName = data1['data']['firstName'];
+            lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            document.getElementById('firstName').value = capitalizeFirstLetter(data1['data']['firstName']);
+            document.getElementById('lastName').value = capitalizeFirstLetter(data1['data']['lastName']);
+            document.getElementById('userName').value = data1['data']['userName'];
+            document.getElementById('email').value = data1['data']['email'];
+            document.getElementById('state').value = capitalizeFirstLetter(data1['data']['state']);
+            document.getElementById('city').value = capitalizeFirstLetter(data1['data']['city']);
+            document.getElementById('address').value = capitalizeFirstLetter(data1['data']['address']);
+            document.getElementById('phoneNo').value = data1['data']['phoneNo'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+        })
+
+
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        document.getElementById('updateForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const userName = document.getElementById('userName').value;
+            const phoneNo = document.getElementById('phoneNo').value;
+            const email = document.getElementById('email').value;
+            const state = document.getElementById('state').value;
+            const city = document.getElementById('city').value;
+            const address = document.getElementById('address').value;
+
+            const alertDiv = document.getElementById('alertDiv');
+            const alertTitle = document.getElementById('alertTitle');
+            const alertMessage = document.getElementById('alertMessage');
+            const psDiv = document.getElementById('psDiv');
+
+            // Reset classes and hide alert
+            alertDiv.classList.remove('text-green-800', 'bg-green-100', 'text-red-800', 'bg-red-100');
+            alertDiv.style.display = 'none';
+
+            psDiv.classList.remove('mt-28');
+            psDiv.classList.add('my-12');
+
+            if (!firstName || !lastName || !userName || !phoneNo || !email || !state || !city || !address) {
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'All fields are compulsory';
+                alertDiv.style.display = 'flex';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+                return false; // Stop further execution
+            }
+
+            const phoneRegex = /^[1-9]\d{9}$/;
+
+            if (!phoneRegex.test(phoneNo)) {
+
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'Please enter a valid mobile number (10 digits starting with a non-zero digit)';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+                alertDiv.style.display = 'flex';
+                return false; // Stop further execution
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'Please enter a valid email address';
+                alertDiv.style.display = 'flex';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+                return false; // Stop further execution
+            }
+
+            try {
+                const response = await fetch('/api/v1/users/updateprofile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ firstName, lastName, userName, phoneNo, email, state, city, address })
+                });
+
+                const data = await response.json();
+
+                if (response.status === 200) {
+                    alertDiv.classList.add('text-green-800', 'bg-green-100');
+                    alertTitle.textContent = 'Success alert!';
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // This makes the scroll smooth
+                    });
+
+                    setTimeout(() => {
+                        console.log("Hello");
+                        window.location.href = '/userprofile';
+                    }, 3000);
+
+                    //console.log("Hii");
+
+                } else if (response.status === 400) {
+                    alertDiv.classList.add('text-red-800', 'bg-red-100');
+                    alertTitle.textContent = 'Error alert!';
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // This makes the scroll smooth
+                    });
+                }
+
+                alertMessage.textContent = data.message;
+                alertDiv.style.display = 'flex';
+            } catch (error) {
+                console.error('Error:', error);
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'Username, Email or Phone number already exist.';
+                alertDiv.style.display = 'flex';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+            }
+
+        });
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

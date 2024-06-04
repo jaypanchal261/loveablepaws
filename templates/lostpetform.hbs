@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lost Pet Form</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 rounded md:bg-transparent md:border-0 text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-[#bbcbca] mt-[3.6rem] md:mt-14 w-full flex justify-center lg:pt-5">
+        <div class="flex flex-col my-6 md:my-10 mx-5 opacity-100 wow animate__animated animate__zoomIn">
+            <h2 class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center">
+                List Your Lost Pet on Our Platform and</h2>
+            <h2 class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center pt-1 md:pt-3">
+                Join The Mission to Reunite them with their Loving Family.</h2>
+        </div>
+    </div>
+
+    <div class="mt-7 mb-3 bg-[#dbe7e7] max-w-screen-md md:mx-auto p-10 rounded-md shadow-md text-[#3f3f40]">
+        <h1
+            class=" text-[#3f3f40] text-3xl md:text-4xl font-semibold mb-6 text-center wow animate__animated animate__zoomIn">
+            List Lost Pet Information</h1>
+
+        <form action="/api/v1/lostpets/listlostpet" method="post" enctype="multipart/form-data" class="text-[#3f3f40]">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium">Pet Name<span
+                            class="text-red-500">*</span></label>
+                    <input type="text" id="name" name="petName"
+                        class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                        placeholder="Enter name of the pet..." required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="colour" class="block text-sm font-medium">Pet Colour<span
+                            class="text-red-500">*</span></label>
+                    <select id="colour" name="petColor"
+                        class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                        required>
+                        <option value="" selected>Select a Pet Colour</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="ginger">Ginger</option>
+                        <option value="grey">Grey</option>
+                        <option value="cream">Cream</option>
+                        <option value="brown">Brown</option>
+                        <option value="cinnamon">Cinnamon</option>
+                        <option value="fawn">Fawn</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium">Pet Type<span class="text-red-500">*</span><br></label>
+                <div class="flex items-center">
+                    <input type="radio" id="dog" name="petType" value="dog" class="mr-2" onchange="combine()" required>
+                    <label for="dog" class="text-sm">Dog</label>
+                    <br>
+                    <input type="radio" id="cat" name="petType" value="cat" class="ml-4 mr-2" onchange="combine()">
+                    <label for="cat" class="text-sm">Cat</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="breed" class="block text-sm font-medium">Breed<span class="text-red-500">*</span></label>
+                <select id="breed" name="breed"
+                    class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                    required>
+                    <option value="" selected>Selact a Pet Breed</option>
+
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium">Gender<span class="text-red-500">*</span></label>
+                <div class="flex items-center">
+                    <input type="radio" id="male" name="gender" value="male" class="mr-2" required>
+                    <label for="male" class="text-sm">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female" class="ml-4 mr-2" required>
+                    <label for="female" class="text-sm">Female</label>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label for="age" class="block text-sm font-medium">Age<span class="text-red-500">*</span></label>
+                    <select id="age" name="age"
+                        class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                        required>
+                        <option value="" selected>Select a Pet Age</option>
+                        <option value="Younghood">Younghood</option>
+                        <option value="Adolescence">Adolescence</option>
+                        <option value="Adulthood">Adulthood</option>
+                        <option value="Senior">Senior</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label for="state" class="block text-sm font-medium">State<span
+                            class="text-red-500">*</span></label>
+                    <select id="state" name="state"
+                        class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                        required>
+                        <option value="">Select a State</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="madhyapradesh">Madhya Pradesh</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="city" class="block text-sm font-medium">City<span class="text-red-500">*</span></label>
+                    <select id="city" name="city"
+                        class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block"
+                        required>
+                        <option value="">Selact a City</option>
+                        {{!-- <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Vadodara">Vadodara</option>
+                        <option value="Gandhinagar">Gandhinagar</option>
+                        <option value="Surat">Surat</option> --}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="photo" class="block text-sm font-medium mb-1" required>Upload Pet Photo<span
+                        class="text-red-500">*</span></label>
+                <input type="file" id="photo" name="petImage" class="text-[#3f3f40] mt-1 rounded-lg" required>
+
+                <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF (MAX.
+                    800x400px).</p>
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium">Other Description<span
+                        class="text-red-500">*</span></label>
+                <textarea id="description" name="otherDesc" rows="3"
+                    placeholder="Write detailed description of your pet..."
+                    class="mt-1 p-2 w-full rounded-md bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm focus:ring-[#555151] focus:border-[#555151] block resize-none"
+                    required></textarea>
+            </div>
+
+            <input type="submit" name="Submit" value="Submit"
+                class="text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-2 py-1 md:px-2 md:py-1 lg:px-4 lg:py-2 text-center wow animate__animated animate__pulse">
+
+        </form>
+    </div>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            let firstName = data1['data']['firstName'];
+            let lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+
+            //then
+            document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+            document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+
+        }).catch((err) => {
+            //console.log(userId, userName);
+            console.log('User is not logged in')
+            // User is not logged in
+            //catch
+            document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+            document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+        })
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+    </script>
+
+    <script>
+        function updateAgeOptions() {
+            var petType = document.getElementById('petType').value;
+            var ageSelect = document.getElementById('age');
+
+            // Clear existing options
+            ageSelect.innerHTML = '';
+
+            // Add new options based on the selected pet type
+            if (petType === 'dog') {
+                var dogAgeOptions = ['Puppyhood', 'Adolescence', 'Adulthood', 'Senior'];
+                for (var i = 0; i < dogAgeOptions.length; i++) {
+                    var option = document.createElement('option');
+                    option.value = dogAgeOptions[i].toLowerCase().replace(/\s+/g, '');
+                    option.text = dogAgeOptions[i];
+                    ageSelect.add(option);
+                }
+            } else if (petType === 'cat') {
+                var catAgeOptions = ['Kittenhood', 'Adolescence', 'Adulthood', 'Senior'];
+                for (var j = 0; j < catAgeOptions.length; j++) {
+                    var optionCat = document.createElement('option');
+                    optionCat.value = catAgeOptions[j].toLowerCase().replace(/\s+/g, '');
+                    optionCat.text = catAgeOptions[j];
+                    ageSelect.add(optionCat);
+                }
+            }
+        }
+
+        // Call the function when the pet type radio selection changes
+
+
+
+        // Create a mapping of states to cities
+        const stateToCities = {
+            gujarat: ['Ahmedabad', 'Gandhinagar', 'Anand', 'Vadodara', 'Surat', 'Rajkot', 'Gandhidham'],
+            maharashtra: ['Mumbai', 'Pune', 'Nagpur'],
+            rajasthan: ['Jaipur', 'Jodhpur', 'Udaipur'],
+            madhyapradesh: ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain']
+        };
+
+        // Function to update city dropdown based on selected state
+        function updateCity() {
+            const stateSelect = document.getElementById('state');
+            const citySelect = document.getElementById('city');
+
+            // Check if the state dropdown and city dropdown exist
+            if (!stateSelect || !citySelect) {
+                console.error('State or city select element not found.');
+                return;
+            }
+
+            const selectedState = stateSelect.value; // Get the selected state
+            console.log("Selected state:", selectedState);
+
+            // Clear existing city options
+            citySelect.innerHTML = '';
+
+            // Get the cities for the selected state
+            const cities = stateToCities[selectedState] || [];
+
+            // Add the default 'Select a City' option
+            const defaultOption = document.createElement('option');
+            defaultOption.textContent = 'Select a City';
+            defaultOption.value = ''; // Empty value for the default option
+            citySelect.appendChild(defaultOption);
+
+            // Populate the city dropdown with the corresponding city options
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.textContent = city;
+                option.value = city.toLowerCase().replace(/\s+/g, '');
+                citySelect.appendChild(option);
+            });
+        }
+
+        // Attach the event listener to the state dropdown to call updateCity when the state changes
+        document.addEventListener('DOMContentLoaded', () => {
+            const stateSelect = document.getElementById('state');
+            const petTypeSelect = document.getElementById('petType');
+            if (stateSelect) {
+                stateSelect.addEventListener('change', updateCity);
+            } else {
+                console.error('State select element not found.');
+            }
+
+        });
+    </script>
+    <script type="text/javascript">
+        // Function to update breed options based on the selected pet type
+        function updateBreeds() {
+            var petType = document.querySelector('input[name="petType"]:checked').value;
+            var breedSelect = document.getElementById('breed');
+
+            // Clear existing options
+            breedSelect.innerHTML = '';
+
+            // Add new options based on the selected pet type
+            if (petType === 'dog') {
+                var dogBreeds = [
+                    'Labrador',
+                    'Golden Retriever',
+                    'Indian Pariah Dog (INDog)',
+                    'Rajapalayam',
+                    'Mudhol Hound',
+                    'Gaddi Kutta',
+                    'Kombai',
+                    'Chippiparai',
+                    'Indian Mastiff (Bakharwal Dog)',
+                    'Kanni',
+                    'Bully Kutta',
+                    'Indian Spitz',
+                    'Vanjari Hound',
+                    'Jonangi',
+                    'Kangal',
+                    'Dhole (Indian Wild Dog)',
+                    'Caravan Hound',
+                    'Other Dog Breed'
+                ];
+                for (var i = 0; i < dogBreeds.length; i++) {
+                    var option = document.createElement('option');
+                    option.value = dogBreeds[i].toLowerCase().replace(/\s+/g, '');
+                    option.text = dogBreeds[i];
+                    breedSelect.add(option);
+                }
+            } else if (petType === 'cat') {
+                var catBreeds = [
+                    'Siamese',
+                    'Persian',
+                    'Bengal',
+                    'Maine Coon',
+                    'Ragdoll',
+                    'Sphynx',
+                    'Abyssinian',
+                    'British Shorthair',
+                    'Scottish Fold',
+                    'Munchkin',
+                    'Egyptian Mau',
+                    'Russian Blue',
+                    'Devon Rex',
+                    'Norwegian Forest Cat',
+                    'Oriental Shorthair',
+                    'Siberian',
+                    'Balinese',
+                    'Other Cat Breed'
+                ];
+                for (var j = 0; j < catBreeds.length; j++) {
+                    var optionCat = document.createElement('option');
+                    optionCat.value = catBreeds[j].toLowerCase().replace(/\s+/g, '');
+                    optionCat.text = catBreeds[j];
+                    breedSelect.add(optionCat);
+                }
+            }
+        }
+
+        function updateAgeOptions() {
+            var petType = document.querySelector('input[name="petType"]:checked').value;
+            var ageSelect = document.getElementById('age');
+
+            // Clear existing options
+            ageSelect.innerHTML = '';
+
+            // Add new options based on the selected pet type
+            if (petType === 'dog') {
+                var dogAgeOptions = ['Puppyhood', 'Adolescence', 'Adulthood', 'Senior'];
+                for (var i = 0; i < dogAgeOptions.length; i++) {
+                    var option = document.createElement('option');
+                    option.value = dogAgeOptions[i].toLowerCase().replace(/\s+/g, '');
+                    option.text = dogAgeOptions[i];
+                    ageSelect.add(option);
+                }
+            } else if (petType === 'cat') {
+                var catAgeOptions = ['Kittenhood', 'Adolescence', 'Adulthood', 'Senior'];
+                for (var j = 0; j < catAgeOptions.length; j++) {
+                    var optionCat = document.createElement('option');
+                    optionCat.value = catAgeOptions[j].toLowerCase().replace(/\s+/g, '');
+                    optionCat.text = catAgeOptions[j];
+                    ageSelect.add(optionCat);
+                }
+            }
+        }
+
+        // Call the function when the pet type radio selection changes
+        document.addEventListener('DOMContentLoaded', function () {
+            // Call on page load
+            updateAgeOptions();
+
+            // Add event listener to the pet type radio group
+            var petTypeRadios = document.querySelectorAll('input[name="petType"]');
+            petTypeRadios.forEach(function (radio) {
+                radio.addEventListener('change', updateAgeOptions);
+            });
+        });
+
+        function combine() {
+            updateBreeds();
+            //updateAgeOptions();
+        }
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

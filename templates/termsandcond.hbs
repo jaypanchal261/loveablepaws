@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms and Conditions</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 rounded md:bg-transparent text-[#3f3f40] md:hover:text-[#fd634f]  md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:border-0 md:hover:text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-[#bbcbca] mt-[3.6rem] md:mt-14 w-full flex justify-center lg:pt-5">
+        <div class="flex flex-col my-8 md:my-12 mx-5 opacity-100 wow animate__animated animate__pulse">
+            <h2 class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center">
+                Terms and Conditions for Loveable Paws</h2>
+        </div>
+    </div>
+
+
+    <div
+        class="bg-[#fbf8f7] flex  flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-7 md:py-14  px-2 md:px-6">
+        <div class="flex flex-col  align-middle w-[80%] md:w-[75%] ">
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                Introduction
+            </h2>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify">Welcome to Loveable Paws! By accessing or
+                using our website and services, you agree to comply with and be bound by these Terms and Conditions.
+                Please read them carefully. If you do not agree with any part of these terms, you must not use our
+                website.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                1. Acceptance of Terms
+            </h2>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"> By using Loveable Paws, you agree to these
+                Terms and Conditions, along with our Privacy Policy. These terms apply to all users, including visitors,
+                registered users, and contributors of content.
+            </p>
+
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                2. Services Provided
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"> Loveable Paws offers various services,
+                including:
+            </p>
+            <ul class="space-y-1 list-disc list-inside text-[#3f3f40] mb-7">
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Pet adoption services</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Lost and found pet</span>
+                </li>
+                <li class=" text-lg p-0 m-0">
+                    <span class="text-lg">Veterinary information</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Pet care resources</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Donation information</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Pet Welfare</span>
+                </li>
+            </ul>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                3. User Accounts
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.
+                    Registration:</span> To access certain features of our site, you may need to create an account. You
+                agree to provide accurate and complete information during registration and to update your information as
+                necessary.
+            </p>
+
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2. Account
+                    Security:</span> You are responsible for maintaining the confidentiality of your account credentials
+                and for all activities that occur under your account. Notify us immediately of any unauthorized use of
+                your account.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                4. Use of Services
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.
+                    Eligibility:</span> You must be at least 13 years old to use our services. By using our site, you
+                represent and warrant that you meet this requirement.
+            </p>
+
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2.
+                    Prohibited Activities:</span> You agree not to engage in any of the following activities:
+            </p>
+
+            <ul class="space-y-1 list-disc list-inside text-[#3f3f40] mb-7">
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Posting false, misleading, or inappropriate content
+                    </span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Using our site for illegal purposes or to promote illegal activities</span>
+                </li>
+                <li class=" text-lg p-0 m-0">
+                    <span class="text-lg">Interfering with the operation of our site or services</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-lg">Attempting to gain unauthorized access to our systems or user accounts</span>
+                </li>
+            </ul>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                5. Pet Adoption Services
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.	Adoption Process:</span> Our site facilitates pet adoption by connecting potential adopters with pets. However, Loveable Paws does not guarantee the availability or suitability of any pet.
+            </p>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2.	Adopter Responsibilities:</span> Adopters must comply with all local regulations and requirements for pet ownership.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                6. Lost and Found Pets
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.	Reporting:</span> Users can list lost or found pets on our site. By submitting an information of lost or found pet, you agree to provide accurate information.
+            </p>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2.	Information Use:</span> We may share lost and found pet information with relevant authorities and organizations to assist in the recovery of pets.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                7. Veterinary Information
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.	Content:</span> Our site provides veterinary information. This information is for educational purposes only and should not replace professional veterinary advice.
+            </p>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2.	No Liability:</span> Loveable Paws is not liable for any decisions or actions taken based on the information provided on our site.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+                8. Pet Care Resources Shops
+            </h2>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1.	Products:</span> Our shops information offers pet-related products. We strive to provide accurate descriptions and images of shops, but we do not guarantee that the information is complete, reliable, or error-free.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+               9. Donation Information
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">1. Donations:</span> We provide information about donation trusts, including their names, addresses, contact information, and payment details. All donations made to these donation trusts are voluntary and non-refundable. Loveable Paws does not directly handle or process any donations through our website.
+            </p>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">2.	Use of Funds:</span> The use of funds is managed by the respective donation trusts. Loveable Paws is not responsible for how the donation trusts use the funds received. Please contact the donation trusts directly for more information on how your donations will be used.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+               10. Limitation of Liability
+            </h2>
+            <p class="mb-7 font-normal text-lg text-[#3f3f40] text-justify">Loveable Paws is not liable for any direct, indirect, incidental, special, or consequential damages arising from your use of our site or services. This includes damages for loss of profits, data, or other intangible losses.
+            </p>
+            
+            <h2 class="text-xl md:text-2xl font-bold text-[#3f3f40] mb-3">
+               11. Contact Us
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify">If you have any questions or concerns about these Terms and Conditions, please contact us at:
+            </p>
+            <h2 class="text-lg md:text-xl font-bold text-[#3f3f40] mb-3">
+               Loveable Paws 
+            </h2>
+            <p class="mb-3 font-normal text-lg text-[#3f3f40] text-justify"><span class="text-lg font-bold">Email: </span> <a href="mailto:loveablepaws2407@gmail.com" class="text-blue-600">loveablepaws2407@gmail.com</a>
+            </p>
+            
+        </div>
+    </div>
+
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            let firstName = data1['data']['firstName'];
+            let lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+
+            document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+            document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+
+        }).catch((err) => {
+            //console.log(userId, userName);
+            console.log('User is not logged in')
+            // User is not logged in
+            document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+            document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+        })
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

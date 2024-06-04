@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loveable Paws</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <!-- navbar -->
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/" class="block py-2 px-3 rounded md:bg-transparent text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:border-0 md:hover:text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- carousal -->
+    <div id="default-carousel" class="relative mt-0 lg:mt-16 w-full" data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative h-80 overflow-hidden md:h-[40rem]">
+            <!-- Item 1 -->
+            <div class="hidden duration-[2000ms] ease-in-out" data-carousel-item>
+                <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-100">
+                    <img src="https://res.cloudinary.com/di5sobazu/image/upload/v1716896075/carousel/ffonm17ijd9oes3d2hjf.jpg"
+                        class="w-full h-full" alt="...">
+                    <div class="absolute top-0 left-0 bg-gray-950/50 w-full h-full">
+
+                    </div>
+                </div>
+                <div class="absolute top-32 left-50 md:top-96 px-4 py-2 opacity-100 mx-4 md:mx-20">
+                    <h2
+                        class="text-xl md:text-3xl text-[#fbf8f7] font-extrabold text-center wow animate__animated animate__fadeInDown">
+                        Adopt a Pet</h2>
+                    <h2
+                        class="text-sm md:text-xl text-[#fbf8f7] font-bold text-center wow animate__animated animate__fadeIn">
+                        As our country develops
+                        and the population increases, street
+                        animals often struggle to survive, sometimes resorting to
+                        scavenging from trash, which can spread diseases and lead to
+                        loss of life. </h2>
+                </div>
+
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-[2000ms] ease-in-out" data-carousel-item>
+                <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-100">
+                    <img src="https://res.cloudinary.com/di5sobazu/image/upload/v1716896075/carousel/pxnn5t03rjkx8zb8yaug.jpg"
+                        class="w-full h-full" alt="...">
+                    <div class="absolute top-0 left-0 bg-gray-950/50 w-full h-full">
+
+                    </div>
+                </div>
+                <div class="absolute top-32 md:top-96 left-50 px-4 py-2 opacity-100 mx-4 md:mx-20">
+                    <h2
+                        class="text-xl md:text-3xl text-[#fbf8f7] font-extrabold text-center wow animate__animated animate__fadeInDown">
+                        Paws in need</h2>
+                    <h2 class="text-sm md:text-xl text-[#fbf8f7] font-bold text-center">Adoption or shelter homes
+                        could provide a solution
+                        for these animals. On the other hand, some pet owners find
+                        themselves unable to care for their pets due to busy schedules
+                        and may decide to rehome them.</h2>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="hidden duration-[2000ms] ease-in-out" data-carousel-item>
+                <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-100">
+                    <img src="https://res.cloudinary.com/di5sobazu/image/upload/v1716896075/carousel/yhecvvobqtuc4wviolyu.jpg"
+                        class="w-full h-full" alt="...">
+                    <div class="absolute top-0 left-0 bg-gray-950/50 w-full h-full">
+
+                    </div>
+                </div>
+                <div class="absolute top-32 md:top-96 left-50 px-4 py-2 opacity-100 mx-4 md:mx-20">
+                    <h2
+                        class="text-xl md:text-3xl text-[#fbf8f7] font-extrabold text-center animate__animated animate__fadeInDown">
+                        Help Animals</h2>
+                    <h2 class="text-sm md:text-xl text-[#fbf8f7] font-bold text-center">Rehoming allows for a direct
+                        placement of the pet into a new home without the stress of going through a shelter or rescue
+                        process.</h2>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="hidden duration-[2000ms] ease-in-out" data-carousel-item>
+                <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-100">
+                    <img src="https://res.cloudinary.com/di5sobazu/image/upload/v1716896075/carousel/lnd2i848lrj1al0lwu5d.jpg"
+                        class="w-full h-full" alt="...">
+                    <div class="absolute top-0 left-0 bg-gray-950/50 w-full h-full">
+
+                    </div>
+                </div>
+                <div class="absolute top-32 md:top-96 left-50 px-4 py-2 opacity-100 mx-4 md:mx-20">
+                    <h2
+                        class="text-xl md:text-3xl text-[#fbf8f7] font-extrabold text-center animate__animated animate__fadeInDown">
+                        Street animal dilemmas
+                    </h2>
+                    <h2 class="text-sm md:text-xl text-[#fbf8f7] font-bold text-center">If you are an animal lover and
+                        looking to get a pet for your home, consider adopting one. There are many wonderful pets waiting
+                        for you to take them home.</h2>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="hidden duration-[2000ms] ease-in-out" data-carousel-item>
+                <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 opacity-100">
+                    <img src="https://res.cloudinary.com/di5sobazu/image/upload/v1716896075/carousel/rkarzdymjqg1ukpqj0wl.jpg"
+                        alt="..." class="w-full h-full">
+                    <div class="absolute top-0 left-0 bg-gray-950/50 w-full h-full">
+
+                    </div>
+                </div>
+                <div class="absolute top-32 md:top-96 left-50 px-4 py-2 opacity-100 mx-4 md:mx-20">
+                    <h2
+                        class="text-xl md:text-3xl text-[#fbf8f7] font-extrabold text-center animate__animated animate__fadeInDown">
+                        Feed the needy</h2>
+                    <h2 class="text-sm md:text-xl text-[#fbf8f7] font-bold text-center">Do you want to bring about a
+                        positive change in the lives of our voiceless friends? Here’s a great opportunity to show your
+                        compassion and love. Choose the one that suits you best.</h2>
+                </div>
+            </div>
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                data-carousel-slide-to="0"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                data-carousel-slide-to="1"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                data-carousel-slide-to="2"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                data-carousel-slide-to="3"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                data-carousel-slide-to="4"></button>
+        </div>
+        <!-- Slider controls -->
+        <button type="button"
+            class="md:block absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button type="button"
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
+
+    <!-- our Services -->
+    <div class="flex flex-col space-y-10 items-center my-6 md:my-12">
+        <h4 class="text-2xl md:text-3xl font-bold text-[#3f3f40] wow animate__animated animate__zoomIn"> Our Services
+        </h4>
+
+        <!-- row 1 -->
+        <div class="flex space-y-10 flex-col md:space-x-16 md:space-y-0 md:flex-row mx-4 md:mx-0">
+            <!-- card 1 -->
+            <!-- w-[342px] md:w-[382px] -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInLeft">
+
+                <img class="rounded-t-lg  w-[382px] h-[286px]" src="assets/adopt_card.jpg" alt="" />
+
+                <div class="p-5">
+
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Adoption</h5>
+
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Facilitating heartwarming pet adoptions through owner listings, adopter connections, and
+                        algorithmic matchmaking.</p>
+                    <a href="/adoptpet"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- card 2 -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInRight">
+                <img class="rounded-t-lg w-[382px] h-[286px]" src="assets/lost_found_card.png" alt="" />
+                <div class="p-5">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Lost and Found
+                        Pets</h5>
+
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Our lost pet system facilitates swift reunions by matching lost reports with found pets,
+                        promoting responsible pet ownership.</p>
+                    <a href="/lostandfound"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center  text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- row 2 -->
+        <div class="flex space-y-10 flex-col  md:flex-row md:space-x-16 md:space-y-0 mx-4 md:mx-0">
+
+            <!-- card 3 -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInLeft">
+                <img class="rounded-t-lg w-[382px] h-[286px]" src="assets/donation_card.jpeg" alt="" />
+                <div class="p-5">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Donation</h5>
+
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Empowering users to support shelters and foster homes by contributing to fundraising campaigns
+                        for animal care.</p>
+                    <a href="/donation"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center  text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- card 4 -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInRight">
+                <img class="rounded-t-lg w-[382px] h-[286px]" src="assets/petcare_card.png" alt="" />
+                <div class="p-5">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Pet Care
+                        Resources</h5>
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Empowering new pet owners with comprehensive resources for optimal pet care, training, and
+                        health.</p>
+                    <a href="/petcareresources"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center  text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- row 3 -->
+        <div class="flex space-y-10 flex-col  md:flex-row md:space-x-16 md:space-y-0 mx-4 md:mx-0">
+
+            <!-- card 5 -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInLeft">
+                <img class="rounded-t-lg w-[382px] h-[286px]" src="assets/veterinary_card.png" alt="" />
+                <div class="p-5">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Veterinary
+                    </h5>
+
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Comprehensive veterinary care ensuring the health and happiness of your pets, conveniently
+                        provided on our platform.</p>
+                    <a href="/veterinary"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center  text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- card 6 -->
+            <div
+                class="max-w-sm bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInRight">
+                <img class="rounded-t-lg w-[382px] h-[286px]" src="assets/wellfare_card.png" alt="" />
+                <div class="p-5">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Wellfare</h5>
+                    <p class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Empowering pet welfare through comprehensive resources and support, ensuring every pet's
+                        well-being from adoption to lifelong care.</p>
+                    <a href="/welfare"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center  text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                        Know more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interesting Facts -->
+    <div class="flex flex-col items-center space-y-12 py-14 bg-[#bbcbca]">
+
+        <h2
+            class="text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn">
+            Some Interesting Facts about Pets
+        </h2>
+
+        <!-- dog Facts -->
+        <div
+            class="flex flex-col items-center bg-[#fbf8f7] border border-gray-200 rounded-lg shadow md:flex-row max-w-96 md:max-w-xl mx-4 md:mx-0 md:min-h-56 wow animate__animated  animate__slideInLeft">
+            <img class=" w-[382px] rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                src="assets/dog_fact.png" alt="">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5
+                    class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                    Dog Facts</h5>
+                <p id="dogfacts"
+                    class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">Here
+                    are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order,Here are the biggest enterprise
+                    technology acquisitions of 2021 so far, in reverse chronological order,Here are the biggest
+                    enterprise technology acquisitions of 2021 so far, in reverse chronological order, </p>
+                <button onclick="fetchDogFacts()"
+                    class="w-fit bg-[#3f3f40] inline-flex items-center  px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                    Show New Fact
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- cat Facts -->
+        <div
+            class="flex flex-col md:flex-row-reverse items-center bg-[#fbf8f7] border border-gray-200 rounded-lg shadow max-w-96 md:max-w-xl mx-4 md:mx-0 md:min-h-56 wow animate__animated  animate__slideInRight">
+            <img class=" w-[382px] rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                src="assets/cat_fact.png" alt="">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5
+                    class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                    Cat Facts</h5>
+                <p id="catfacts"
+                    class="mb-3 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">Here
+                    are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <button onclick="fetchCatFacts()"
+                    class="w-fit inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+                    Show New Fact
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- recently adopted from our platform -->
+    <div class="flex flex-col px-3 md:px-32 py-14 space-y-12 bg-[#fbf8f7] items-center">
+        <h2
+            class="text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn">
+            Recently Adopted from Loveable Paws
+        </h2>
+
+        <div id="recentlyAdoptedContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+        </div>
+
+        <a href="/recentlyadoptedpets"
+            class="w-fit bg-[#3f3f40] inline-flex items-center  px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] wow animate__animated animate__pulse animate__delay-2s">
+            See all Adopted Pets
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+            </svg>
+        </a>
+    </div>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        let recentlyAdoptedContainer = document.getElementById('recentlyAdoptedContainer');
+
+        let pr = fetch(`/api/v1/pets/recentlyadopted`);
+
+        pr.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            recentalyAdoptedPets(data1);
+        })
+
+
+        function recentalyAdoptedPets(data1) {
+            recentlyAdoptedContainer.innerHTML = "";
+            for (i = 0; i < data1['data'].length; i++) {
+
+                let data = `<div class="relative wow animate__animated  animate__flipInX animate__delay-1s">
+                <img class="max-w-full rounded-lg" style="height: 350px; width: 388px"
+                    src="${data1['data'][i]['petImage']}" alt="">
+                <div class="absolute bottom-0 px-4 py-3 bg-[#bbcbca]/90 w-full text-center">
+                    <h1 class="text-[#3f3f40] font-bold text-lg md:text-2xl"> ${capitalizeFirstLetter(data1['data'][i]['petName'])} </h1>
+                </div>
+            </div>`
+
+                recentlyAdoptedContainer.innerHTML = recentlyAdoptedContainer.innerHTML + data;
+
+            }
+        }
+
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function fetchDogFacts() {
+            let dogFactsPromise = fetch("https://dogapi.dog/api/v2/facts?limit=300");
+
+            dogFactsPromise.then((Response) => {
+                return Response.json();
+            }).then((data1) => {
+                let text = document.getElementById('dogfacts');
+                text.innerHTML = data1['data']['0']['attributes']['body'];
+            })
+        }
+        fetchDogFacts();
+
+        function fetchCatFacts() {
+            let catFactsPromise = fetch("https://catfact.ninja/fact?max_length=300");
+
+            catFactsPromise.then((Response) => {
+                return Response.json();
+            }).then((data1) => {
+                let text = document.getElementById('catfacts');
+                text.innerHTML = data1['fact'];
+            })
+        }
+        fetchCatFacts();
+
+        //var firstName, lastName;
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            let firstName = data1['data']['firstName'];
+            let lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+
+            document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+            document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+
+        }).catch((err) => {
+            //console.log(userId, userName);
+            console.log('User is not logged in')
+            // User is not logged in
+            document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+            document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+        })
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

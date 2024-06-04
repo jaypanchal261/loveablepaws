@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:border-0 md:hover:text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="alertDiv" class="hidden items-center p-4 mt-20 mx-4 text-sm text-green-800 rounded-lg bg-green-100"
+        role="alert">
+        <svg id="alertIcon" class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+            <span id="alertTitle" class="font-medium mr-2"></span><span id="alertMessage"></span>
+        </div>
+    </div>
+
+
+    <div id="psDiv" class="mt-16 flex justify-center py-8 wow animate__animated animate__pulse">
+        <div class="flex bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-lg my-8 mx-4 md:mx-0  items-center">
+            <img src="assets/login.png" alt=""
+                class="hidden md:block w-[400px] h-[500px] md:rounded-none md:rounded-s-lg p-4">
+
+            <form id="loginForm" class="min-w-80  md:min-w-96 px-8 py-8 md:py-0" action="/api/v1/users/login"
+                method="post">
+                <h1
+                    class="text-center font-bold text-2xl text-[#3f3f40] mb-5 wow animate__animated animate__pulse animate__delay-1s">
+                    LOG IN</h1>
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 text-sm font-medium text-[#3f3f40]">Your email</label>
+                    <input type="email" id="email" name="email"
+                        class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5 "
+                        placeholder="name@yourmail.com" required />
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 text-sm font-medium text-[#3f3f40]">Your
+                        password</label>
+                    <input type="password" id="password" name="password"
+                        class="bg-[#fbf8f7] border border-gray-300 text-[#3f3f40] text-sm rounded-lg focus:ring-[#555151] focus:border-[#555151] block w-full p-2.5 "
+                        required />
+                </div>
+                <div class="flex items-start mb-5">
+                    <div class="flex items-center h-5">
+                        <input id="remember" type="checkbox" value=""
+                            class="w-4 h-4 border border-gray-300 rounded bg-[#fbf8f7] focus:ring-3 focus:ring-[#555151]"
+                            required />
+                    </div>
+                    <label for="remember" class="ms-2 text-sm font-medium text-[#3f3f40] ">Remember me</label>
+                </div>
+                <input type="submit" name="Submit" value="Submit"
+                    class="text-white bg-[#3f3f40] hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center wow animate__animated animate__pulse animate__delay-1s" />
+
+                <p class="mt-5 text-sm font-light text-gray-500">
+                    Don't have an account? <a href="/signup" class="font-medium text-[#3f3f40] hover:underline">Register
+                        here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/" class="hover:underline">Loveable
+                        Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const alertDiv = document.getElementById('alertDiv');
+            const alertTitle = document.getElementById('alertTitle');
+            const alertMessage = document.getElementById('alertMessage');
+            const psDiv = document.getElementById('psDiv');
+
+            // Reset classes and hide alert
+            alertDiv.classList.remove('text-green-800', 'bg-green-100', 'text-red-800', 'bg-red-100');
+            alertDiv.style.display = 'none';
+
+            psDiv.classList.remove('mt-16');
+            //psDiv.classList.add('my-0');
+
+            if (!email || !password) {
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'All fields are compulsory';
+                alertDiv.style.display = 'flex';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+                return false; // Stop further execution
+            }
+
+            try {
+                const response = await fetch('/api/v1/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                console.log(response.status);
+
+                if (response.status === 200) {
+                    alertDiv.classList.add('text-green-800', 'bg-green-100');
+                    alertTitle.textContent = 'Success alert!';
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // This makes the scroll smooth
+                    });
+
+                    // Redirect the user to the constructed URL
+                    window.location.href = "/";
+
+                    //console.log("Hii");
+
+                } else if (response.status === 400) {
+                    alertDiv.classList.add('text-red-800', 'bg-red-100');
+                    alertTitle.textContent = 'Error alert!';
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // This makes the scroll smooth
+                    });
+                }
+
+                alertMessage.textContent = data.message;
+                alertDiv.style.display = 'flex';
+            } catch (error) {
+                console.log('Error:', error);
+                alertDiv.classList.add('text-red-800', 'bg-red-100');
+                alertTitle.textContent = 'Error alert!';
+                alertMessage.textContent = 'Invalid User credentials';
+                alertDiv.style.display = 'flex';
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // This makes the scroll smooth
+                });
+            }
+
+        });
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+                // Redirect the user to the constructed URL
+                window.location.href = "/";
+
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            let firstName = data1['data']['firstName'];
+            let lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+
+            document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+            document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+        }).catch((err) => {
+            //console.log(userId, userName);
+            console.log('User is not logged in')
+            // User is not logged in
+            document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+            document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+        })
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

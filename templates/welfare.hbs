@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welfare</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 rounded md:bg-transparent md:border-0 text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-[#bbcbca] mt-[3.6rem] md:mt-14 w-full flex justify-center pt-5">
+        <img src="assets/welfare_top.png" alt="Welfare" width="1600">
+    </div>
+
+    <div class="flex flex-col my-12 opacity-100 bg-[#fbf8f7]">
+        <h4
+            class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center wow animate__animated animate__zoomIn">
+            Pet Welfare Guides</h4>
+        <h2 class="text-xs md:text-base text-[#bcbcbd] px-4 pt-2 font-medium text-center">What you need to know about
+            providing the right basic care for your Dog and Cat</h2>
+    </div>
+
+    <div class="flex flex-col space-y-10 items-center mt-12 mb-14">
+        <div class="flex space-y-10 flex-col md:space-x-16 md:space-y-0 md:flex-row mx-4">
+            <!-- card 1 -->
+            <div
+                class="max-w-sm  bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInLeft">
+                <div class="flex justify-center pt-12">
+                    <div class="flex items-center justify-center bg-[#fbf8f7] w-32 h-32 rounded-full">
+                        <svg class="w-[80px] h-[80px] fill-[#e28767]" viewBox="0 0 576 512"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M309.6 158.5L332.7 19.8C334.6 8.4 344.5 0 356.1 0c7.5 0 14.5 3.5 19 9.5L392 32h52.1c12.7 0 24.9 5.1 33.9 14.1L496 64h56c13.3 0 24 10.7 24 24v24c0 44.2-35.8 80-80 80H464 448 426.7l-5.1 30.5-112-64zM416 256.1L416 480c0 17.7-14.3 32-32 32H352c-17.7 0-32-14.3-32-32V364.8c-24 12.3-51.2 19.2-80 19.2s-56-6.9-80-19.2V480c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V249.8c-28.8-10.9-51.4-35.3-59.2-66.5L1 167.8c-4.3-17.1 6.1-34.5 23.3-38.8s34.5 6.1 38.8 23.3l3.9 15.5C70.5 182 83.3 192 98 192h30 16H303.8L416 256.1zM464 80a16 16 0 1 0 -32 0 16 16 0 1 0 32 0z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="p-8 text-center">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Dog Welfare</h5>
+                    <p class="mb-4 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Here, you'll find out how to prepare for your new dog.
+                        Find out how to provide the right diet, exercise, companionship and veterinary care for your
+                        dog.</p>
+                    <a href="#DogWelfare"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] scroll-smooth wow animate__animated animate__pulse animate__delay-2s">
+                        Read more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- card 2 -->
+            <div
+                class="max-w-sm  bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-md wow animate__animated animate__slideInRight">
+                <div class="flex justify-center pt-12">
+                    <div class="flex items-center justify-center bg-[#fbf8f7] w-32 h-32 rounded-full">
+                        <svg class="w-[80px] h-[80px] fill-[#e28767]" viewBox="0 0 576 512"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M320 192h17.1c22.1 38.3 63.5 64 110.9 64c11 0 21.8-1.4 32-4v4 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V339.2L280 448h56c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-53 0-96-43-96-96V192.5c0-16.1-12-29.8-28-31.8l-7.9-1c-17.5-2.2-30-18.2-27.8-35.7s18.2-30 35.7-27.8l7.9 1c48 6 84.1 46.8 84.1 95.3v85.3c34.4-51.7 93.2-85.8 160-85.8zm160 26.5v0c-10 3.5-20.8 5.5-32 5.5c-28.4 0-54-12.4-71.6-32h0c-3.7-4.1-7-8.5-9.9-13.2C357.3 164 352 146.6 352 128v0V32 12 10.7C352 4.8 356.7 .1 362.6 0h.2c3.3 0 6.4 1.6 8.4 4.2l0 .1L384 21.3l27.2 36.3L416 64h64l4.8-6.4L512 21.3 524.8 4.3l0-.1c2-2.6 5.1-4.2 8.4-4.2h.2C539.3 .1 544 4.8 544 10.7V12 32v96c0 17.3-4.6 33.6-12.6 47.6c-11.3 19.8-29.6 35.2-51.4 42.9zM432 128a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm48 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="p-8 text-center">
+                    <h5
+                        class="mb-2 text-2xl font-bold tracking-tight text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Cat Welfare</h5>
+                    <p class="mb-4 font-normal text-[#3f3f40] wow animate__animated animate__zoomIn animate__delay-1s">
+                        Here, you'll find out how to prepare for your new cat.
+                        Find out how to provide the right diet, exercise, companionship and veterinary care for your
+                        cat.</p>
+                    <a href="#CatWelfare"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#3f3f40] rounded-lg hover:bg-[#2c2c33] focus:ring-4 focus:outline-none focus:ring-[#555151] scroll-smooth wow animate__animated animate__pulse animate__delay-2s">
+                        Read more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="DogWelfare" class="bg-[#bbcbca]">
+        <!-- Things you must do - dog -->
+        <div class="py-7 md:py-14 px-5 sm:px-14 md:px-20 xl:px-64 text-justify">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-[#3f3f40] text-start mb-2 wow animate__animated animate__zoomIn">
+                How to prepare for your new dog:
+            </h2>
+            <h2
+                class="text-2xl md:text-3xl font-bold text-[#3f3f40] text-start mb-2 md:mb-4 wow animate__animated animate__zoomIn">
+                5 things you must do
+            </h2>
+            <p class="mb-4 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Adopting a dog is exciting, but
+                it can often mean a big life change for you and them. To make things easier and give your new dog the
+                best chance of settling in, it’s really important to prepare for their arrival.</p>
+            <p class="mb-4 md:mb-6 font-normal text-[#3f3f40] text-sm md:text-base text-justify">As well as having a
+                moral duty
+                to look after your new dog properly, you have a legal responsibility. Under the Animal Welfare Act, you
+                must give your dog:</p>
+
+            <ul class="max-w-md space-y-1 list-disc list-inside text-[#3f3f40]">
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">A suitable place to live</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">A healthy diet and access to clean water</span>
+                </li>
+                <li class=" text-lg p-0 m-0">
+                    <span class="text-base">The ability to behave normally</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">Appropriate company</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">Protection from pain, injury, suffering and disease</span>
+                </li>
+            </ul>
+
+            <p class="mt-4 md:mt-6 font-normal text-[#3f3f40] text-sm md:text-base text-justify">So, to help you get
+                ready for the big day and understand your legal responsibilities as a dog owner, we’ve created this ‘to
+                do’ list.
+            </p>
+        </div>
+
+        <!-- point 1 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 ">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    1. Get a Comfy Bed for Your Dog
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40]  text-sm md:text-base text-justify">Your dog
+                    needs a nice, cozy place to sleep and relax. Some dogs like to curl up, while others prefer
+                    stretching out. Ask the person you got the dog from about their sleeping style, or get a bed that
+                    works for both.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Pick a
+                    bed that's comfy, just the right size, easy to clean, and made from dog-friendly stuff. It should be
+                    big enough for them to turn around comfortably.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Put the
+                    bed in a clean, dry spot without any drafts. With time, you'll figure out if your dog likes being in
+                    the middle of everything or if they prefer a quieter spot.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    If your dog is used to being in a crate, the same rules apply. Don't use a crate if they're not used
+                    to it. Talk to your vet or a specialist who knows about dog behavior first.
+                </p>
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/1_dog_welfare.jpg" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                1. Get a Comfy Bed for Your Dog
+            </h2>
+        </div>
+
+        <!-- point 2 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row-reverse justify-center items-center py-0 md:py-14 px-2 md:px-6">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-3 md:mb-4">
+                    2. Choose Good Food for Your Dog
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Dogs need to eat healthy
+                    and balanced meals, and they should always have fresh water available.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">The person you're getting
+                    the dog from will let you know what food they're giving. But it's a good idea to ask your vet or a
+                    nutritionist for advice, just in case the current food might not be the best.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    Even if you decide to change your dog's food, do it slowly. Make sure to buy the food they're used
+                    to until you've talked to your vet. This helps your dog adjust to the new food without any tummy
+                    troubles.
+                </p>
+            </div>
+            <div class="mr-0 md:mr-16 wow animate__animated animate__slideInLeft"> <img src="assets/2_dog_welfare.png"
+                    alt="" class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black"></div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                2. Choose Good Food for Your Dog
+            </h2>
+        </div>
+
+        <!--point 3 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 ">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    3. Get Toys and Games for Your Dog
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Dogs need to do things that
+                    make them feel like dogs, such as walking, playing, and chasing (but not too wild!).
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    When your dog comes home, having toys and games for them is important. It keeps them happy, active,
+                    and thinking. Plus, it's a fun way for both of you to become good friends. Remember, they still need
+                    their regular walks, too!
+                </p>
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/3_dog_welfare.png" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                3. Get Toys and Games for Your Dog
+            </h2>
+        </div>
+
+        <!-- point 4 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row-reverse justify-center items-center py-0 md:py-14 px-2 md:px-6">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-3 md:mb-4">
+                    4. Consider Company for Your Dog
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">It's your job to make sure
+                    your dog has good company, whether it's from people, other dogs, or both. Some dogs like being
+                    around others more than some, but no dog enjoys being alone for a really long time.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Before your dog comes home,
+                    think about the times they'll be by themselves. Depending on what your dog likes, you might want to
+                    check out a doggy day care, a trusted dog walker, or a pet sitter.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">If you find out from the
+                    person you got the dog from that they get really upset when left alone (called separation anxiety),
+                    talk to your vet or a behavior expert.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">And remember: if your dog
+                    is going to be alone a lot, it might not be the best idea to bring them home.
+                </p>
+            </div>
+            <div class="mr-0 md:mr-16 wow animate__animated animate__slideInLeft"> <img src="assets/4_dog_welfare.png"
+                    alt="" class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black"></div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                4. Consider Company for Your Dog
+            </h2>
+        </div>
+
+        <!--point 5 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 pb-7">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    5. Register with a vet
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">The very first and super
+                    important thing to do for your dog is to sign up with a vet. This helps make sure your dog stays
+                    safe from getting hurt, feeling pain, and getting sick.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    A vet is like a pet superhero, ready to keep your dog healthy and happy. So, don't forget to sign up
+                    with a vet to give your dog the best care possible!
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    It's a fundamental part of responsible pet ownership, offering your furry companion the best support
+                    for a happy and healthy life.
+                </p>
+
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/5_dog_welfare.png" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                5. Register with a vet
+            </h2>
+        </div>
+
+    </section>
+
+    <section id="CatWelfare" class="scroll-smooth bg-[#bbcbca]">
+
+        <!-- Things you must do - cat -->
+        <div class="py-7 md:py-14 px-5 sm:px-14 md:px-20 xl:px-64 text-justify">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-[#3f3f40] text-start mb-2 wow animate__animated animate__zoomIn">
+                How to prepare for your new cat:
+            </h2>
+            <h2
+                class="text-2xl md:text-3xl font-bold text-[#3f3f40] text-start mb-2 md:mb-4 wow animate__animated animate__zoomIn">
+                5 things you must do
+            </h2>
+            <p class="mb-4 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Adopting a cat is exciting, but
+                it can often mean a big life change for you and them. To make things easier and give your new cat the
+                best chance of settling in, it’s really important to prepare for their arrival.</p>
+            <p class="mb-4 md:mb-6 font-normal text-[#3f3f40] text-sm md:text-base text-justify">As well as having a
+                moral duty
+                to look after your new cat properly, you have a legal responsibility. Under the Animal Welfare Act, you
+                must give your cat:</p>
+
+            <ul class="max-w-md space-y-1 list-disc list-inside text-[#3f3f40]">
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">A suitable place to live</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">A healthy diet and access to clean water</span>
+                </li>
+                <li class=" text-lg p-0 m-0">
+                    <span class="text-base">The ability to behave normally</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">Appropriate company</span>
+                </li>
+                <li class="text-lg p-0 m-0">
+                    <span class="text-base">Protection from pain, injury, suffering and disease</span>
+                </li>
+            </ul>
+
+            <p class="mt-4 md:mt-6 font-normal text-[#3f3f40] text-sm md:text-base text-justify">So, to help you get
+                ready for the big day and understand your legal responsibilities as a cat owner, we’ve created this ‘to
+                do’ list.
+            </p>
+        </div>
+
+        <!--point 1 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 ">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    1. Create Safe Spaces for Your Cat
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">To make
+                    your cat feel safe and happy, it's important to create special places just for them. Cats like
+                    having their own bed, secret spots to hide, and high places to see everything around them.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Start by
+                    getting a comfy and warm cat bed, like an igloo or hammock. Put it in a quiet area where your cat
+                    can relax. You might even get more than one bed and place them in different rooms.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">You can
+                    also make cozy spots for your cat. Find a cardboard box that's just the right size, lay it on its
+                    side, and add a soft blanket inside. Put it in a quiet spot, and your cat will love it.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    For extra high spots, place soft blankets on top of wardrobes, shelves, or windowsills. This gives
+                    your cat a great elevated hiding spot where they can feel safe and secure.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">By
+                    making these special places, you're helping your cat enjoy their own cozy and comfortable spaces in
+                    your home.
+                </p>
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/1_cat_welfare.png" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                1. Create Safe Spaces for Your Cat
+            </h2>
+        </div>
+
+        <!-- point 2 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row-reverse justify-center items-center py-0 md:py-14 px-2 md:px-6">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-3 md:mb-4">
+                    2. Setting up a Bathroom for Your Cat
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Cats
+                    like to use the bathroom in a spot where they feel safe, and they want to be able to cover up their
+                    waste after.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">If your
+                    cat already uses a litter tray, or if you don't have a garden, you should have a litter tray ready
+                    before your cat comes home.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    But if your cat likes to go outside and you have a garden, or you want to teach them to go outside,
+                    choose a spot that's close to your home and quiet. Once your cat arrives, you can show them that
+                    this is the place where they should go to the bathroom.
+                </p>
+            </div>
+            <div class="mr-0 md:mr-16 wow animate__animated animate__slideInLeft"> <img src="assets/2_cat_welfare.png"
+                    alt="" class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black"></div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                2. Setting up a Bathroom for Your Cat
+            </h2>
+        </div>
+
+        <!--point 3 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 ">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    3. Choose the Right Food for Your Cat
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">To keep
+                    your cat healthy, it's important to give them the right kind of food and always have fresh water
+                    available.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    When you first bring your cat home, it's a good idea to continue feeding them the same food they're
+                    used to. Ask the person you got the cat from about their diet and make sure to buy enough of it.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Even if
+                    you want to change their diet, this should be done gradually and under the guidance of your vet.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Lots of
+                    cats like to eat a special type of grass called Cocksfoot because it helps them clear furballs. Have
+                    some in the house to stop them chewing other houseplants!"
+                </p>
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/3_cat_welfare.png" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                3. Choose the Right Food for Your Cat
+            </h2>
+        </div>
+
+        <!-- point 4 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row-reverse justify-center items-center py-0 md:py-14 px-2 md:px-6">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-3 md:mb-4">
+                    4. Help Your Cat with Scratching
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Cats
+                    love to scratch, and it's a big part of being a cat. You can help them by getting a special thing
+                    called a scratch post. This is a good way to make sure they don't scratch your furniture.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Put the
+                    scratch post close to their bed, so when they wake up, they can stretch and scratch on it. This is
+                    something many cats really like to do, and it keeps their claws healthy and your furniture safe!
+                </p>
+            </div>
+            <div class="mr-0 md:mr-16 wow animate__animated animate__slideInLeft"> <img src="assets/4_cat_welfare.png"
+                    alt="" class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black"></div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10 ">
+                4. Help Your Cat with Scratching
+            </h2>
+        </div>
+
+        <!--point 5 - cat -->
+        <div
+            class="bg-[#fbf8f7] flex flex-col-reverse space-y-8 md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-16 items-center py-0 md:py-14 px-2 md:px-6 pb-7">
+            <div class="flex flex-col align-middle w-[80%] md:w-[50%] text-justify">
+                <h2
+                    class="hidden md:block text-xl md:text-2xl font-bold text-[#3f3f40] text-center wow animate__animated animate__zoomIn mb-3 md:mb-4 ">
+                    5. Plan for Vacation Time with Your Cat
+                </h2>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">Even
+                    though cats can do things on their own, they can't be by themselves for a long time. When you go on
+                    a trip, you'll need to find someone to take care of your cat, like a cat-sitter or a special place
+                    called a cattery.
+                </p>
+                <p class="mb-3 font-normal text-[#3f3f40] text-sm md:text-base text-justify">
+                    Start looking into your choices early so you don't have a hard time finding someone to help when
+                    you're away. Planning ahead keeps everything easy and makes sure your cat is well taken care of
+                    while you're on vacation.
+                </p>
+            </div>
+            <div class="flex justify-center items-center wow animate__animated animate__slideInRight">
+                <img src="assets/5_cat_welfare.jpg" alt=""
+                    class="w-[220px] md:w-[358px] mb-7 md:mb-0 rounded-3xl shadow-2xl shadow-black">
+            </div>
+            <h2
+                class="block md:hidden text-2xl md:text-3xl font-bold text-[#3f3f40] mx-8 text-center wow animate__animated animate__zoomIn mb-5 md:mb-10">
+                5. Plan for Vacation Time with Your Cat
+            </h2>
+        </div>
+    </section>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            let firstName = data1['data']['firstName'];
+            let lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+
+            //then
+            document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+            document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+
+
+        }).catch((err) => {
+            //console.log(userId, userName);
+            console.log('User is not logged in')
+            // User is not logged in
+            //catch
+            document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+            document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+        })
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

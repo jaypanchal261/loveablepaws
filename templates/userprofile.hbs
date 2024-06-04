@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+        integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://kit.fontawesome.com/ad5f4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/output.css" />
+    <style>
+        #loginBtn::before {
+            content: "Log in/ Sign up";
+        }
+
+        @media (max-width: 500px) {
+            #loginBtn::before {
+                content: "Login";
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#fbf8f7]">
+
+    <nav class="bg-[#fbdbc3] fixed w-full z-40 top-0 start-0 border-b border-gray-200">
+        <div class=" flex flex-wrap items-center justify-between p-2 md:p-3 ">
+            <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt=" Logo" />
+                <span
+                    class="self-center text-xl md:text-xl lg:text-2xl text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                    Paws</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                {{!-- button --}}
+                <a href="/login" id="loginBtn"
+                    class="inline-flex items-center text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-4 py-2 text-center hidden">
+
+                </a>
+
+                {{!-- icon --}}
+                <a id="userIcon" href="/userprofile"
+                    class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full hidden"
+                    style="background-color: #3f3f40;">
+                    <span class="font-medium text-[#fbf8f7]" id="flName">JL</span>
+                </a>
+
+                <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#fbdbc3] md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#fbdbc3] lg:space-x-8 ">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/listpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">List
+                            Pet</a>
+                    </li>
+                    <li>
+                        <a href="/adoptpet"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0  font-bold">Adopt
+                            Pet
+                        </a>
+                    </li>
+
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between w-full py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:border-0 md:hover:text-[#fd634f] md:p-0 md:w-auto font-bold">
+                            Services
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownNavbar"
+                            class="z-40 hidden font-normal bg-[#fbdbc3] divide-y divide-[#ffd5b5] rounded-lg shadow-lg w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="/lostandfound" class="block px-4 py-2 hover:bg-[#f5be94]">Lost
+                                        and Found Pet</a>
+                                </li>
+                                <li>
+                                    <a href="/donation" class="block px-4 py-2 hover:bg-[#f5be94]">Donation</a>
+                                </li>
+                                <li>
+                                    <a href="/petcareresources" class="block px-4 py-2 hover:bg-[#f5be94]">Pet
+                                        Care Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/veterinary" class="block px-4 py-2 hover:bg-[#f5be94]">Veterinary</a>
+                                </li>
+                                <li>
+                                    <a href="/welfare" class="block px-4 py-2 hover:bg-[#f5be94]">Welfare</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/aboutus"
+                            class="block py-2 px-3 text-[#3f3f40] rounded hover:bg-[#f5be94] md:hover:bg-transparent md:hover:text-[#fd634f] md:p-0 font-bold">About
+                            Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- user profile -->
+    <div class="mx-4 lg:mx-0 mt-20 md:mt-28 mb-5 lg:mb-8">
+        <h4
+            class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center wow animate__animated animate__zoomIn">
+            Your Profile</h4>
+    </div>
+
+    <div class="flex justify-center mx-4 lg:mx-0">
+        <div href="#" class="block max-w-3xl p-6 bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-lg">
+            <div class="flex justify-end">
+                <button id="dropdownButton" data-dropdown-toggle="dropdown"
+                    class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5"
+                    type="button">
+                    <span class="sr-only">Open dropdown</span>
+                    <svg class="w-5 h-5 fill-[#3f3f40]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 3">
+                        <path
+                            d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                    </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div id="dropdown"
+                    class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                    <ul class="py-2" aria-labelledby="dropdownButton">
+                        <li id="editProfile">
+                            <a href="/edituserprofile"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="/changepassword"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Change Password</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <div class="flex items-center justify-center bg-[#fbf8f7] w-28 h-28 rounded-full shadow-lg">
+                    <span class="font-medium text-5xl text-[#3f3f40]" id="flNameCard">JL</span>
+                </div>
+
+                <p class="pt-3 font-medium text-xs text-gray-500">Name</p>
+                <h2 id="name"
+                    class="text-[#3f3f40] font-bold text-base pb-5 wow animate__animated animate__pulse animate__delay-1s">
+                    Dev Patel</h2>
+            </div>
+            <table class="w-auto text-xs sm:text-base text-left rtl:text-right">
+                <tbody>
+                    <tr>
+                        <td scope="row" class="px-2 mr-20 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Username</p>
+                            <p id="userName" class="whitespace-nowrap text-[#3f3f40] font-bold text-base">@1234567890
+                            </p>
+                        </td>
+
+                        <td scope="row" class="hidden md:block ps-16 pr-20 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Email</p>
+                            <p id="email1" class="whitespace-nowrap text-[#3f3f40] font-bold text-base">abc@gmail.com
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="hidden md:block px-2 mr-20 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Address</p>
+                            <p id="address1" class=" text-[#3f3f40] font-bold text-base text-justify">Lorem ipsum dolor
+                                sit amet
+                                consectetur, adipisicing elit. Omnis soluta quaerat libero.</p>
+                        </td>
+
+                        <td scope="row" class="ps-2 md:ps-16 pr-20 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Mobile No</p>
+                            <p id="phoneNo" class="whitespace-nowrap text-[#3f3f40] font-bold text-base">+91 12345 67890
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="block md:hidden px-2 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Email</p>
+                            <p id="email2" class="whitespace-nowrap text-[#3f3f40] font-bold text-base">abc@gmail.com
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="block md:hidden px-2 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Address</p>
+                            <p id="address2" class=" text-[#3f3f40] font-bold text-base text-justify">Lorem ipsum dolor
+                                sit amet
+                                consectetur, adipisicing elit. Omnis soluta quaerat libero.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="px-4 lg:px-20 py-5 lg:py-12 divide-y divide-gray-300">
+        <p></p>
+        <p></p>
+    </div>
+
+    <!-- Pet Profile -->
+    <div class="mx-4 lg:mx-0 mb-5 lg:mb-8">
+        <h4
+            class="text-2xl md:text-3xl text-[#3f3f40] font-extrabold text-center wow animate__animated animate__zoomIn">
+            Pet Profiles You have Listed on Loveable Paws</h4>
+    </div>
+
+    <div id="listedPetContainer" class="flex flex-wrap flex-col xl:flex-row justify-center items-center mb-10">
+
+        <div class="flex flex-col justify-center items-center my-8">
+            <!-- Default Msg -->
+            <img src="assets/notListed.png" alt="" class="h-80">
+            <h4 class="text-xl md:text-2xl font-bold text-center wow animate__animated animate__zoomIn"
+                style="color: #d48053;">
+                🐾Whoops! It seems you forgot to list any pet for adoption.<br>Tap 'List Pet' to introduce them to
+                potential
+                adopters.</h4>
+        </div>
+    </div>
+
+
+    <div class="flex justify-center pt-12 pb-8">
+        <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
+            class="block text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-md px-5 py-2.5 text-center wow animate__animated animate__pulse animate__delay-1s"
+            type="button">
+            Logout
+        </button>
+    </div>
+
+    <div id="popup-modal-logout" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-[#fbf8f7] rounded-lg shadow">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="popup-modal-logout">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure want to
+                        logout?</h3>
+                    <form action="/api/v1/users/logout" method="post" class="inline-block">
+                        <input data-modal-hide="popup-modal-logout" type="submit" value="Yes, I'm sure"
+                            class="text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center" />
+                    </form>
+                    <button data-modal-hide="popup-modal-logout" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium rounded-lg text-[#3f3f40] bg-[#fbf8f7] hover:bg-[#3f3f40] border border-[#3f3f40] hover:text-[#fbf8f7] focus:ring-2 focus:outline-none focus:ring-[#5a5a5c] font-semibold">No,
+                        cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#bbcbca] shadow">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center space-x-1 rtl:space-x-reverse">
+                    <img src="assets/logo.png" class="h-8 md:h-8 lg:h-11" alt="Logo" />
+                    <span
+                        class="self-center  text-xl md:text-xl lg:text-2xl  text-[#3f3f40] font-bold whitespace-nowrap">Loveable
+                        Paws</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#3f3f40] sm:mb-0 ">
+                    <li>
+                        <a href="/aboutus" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="/privacypolicy" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/termsandcond" class="hover:underline me-4 md:me-6">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#5e5e60] sm:text-center">© 2024 <a href="/"
+                        class="hover:underline">Loveable Paws™</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-7">
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram page</span>
+                    </a>
+                    <a href="mailto:loveablepaws2407@gmail.com" class="text-gray-500 hover:text-gray-900">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="sr-only">Mail</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        new WOW().init();
+
+        var firstName, lastName;
+
+        let userPromise = fetch(`/api/v1/users/getuser`);
+
+        userPromise.then((Response) => {
+            return Response.json();
+        }).then((data1) => {
+            console.log(data1);
+            firstName = data1['data']['firstName'];
+            lastName = data1['data']['lastName'];
+
+            let userId = data1['data']['_id'];
+            let userName = data1['data']['userName'];
+
+            document.getElementById('name').innerHTML = capitalizeFirstLetter(data1['data']['firstName']) + ' ' + capitalizeFirstLetter(data1['data']['lastName']);
+
+            document.getElementById('userName').innerHTML = data1['data']['userName'];
+            document.getElementById('email1').innerHTML = data1['data']['email'];
+            document.getElementById('email2').innerHTML = data1['data']['email'];
+            document.getElementById('address1').innerHTML = capitalizeFirstLetter(data1['data']['address']);
+            document.getElementById('address2').innerHTML = capitalizeFirstLetter(data1['data']['address']);
+            document.getElementById('phoneNo').innerHTML = data1['data']['phoneNo'];
+
+            const result = createString(firstName, lastName);
+            document.getElementById("flName").innerHTML = result;
+
+            document.getElementById("flNameCard").innerHTML = result;
+
+            showProfileBtn(userId, userName);
+        })
+
+
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function createString(firstName, lastName) {
+            // Extracting the first character of the first name (if it exists)
+            const firstInitial = firstName.length > 0 ? firstName.charAt(0) : '';
+            // Extracting the first character of the last name (if it exists)
+            const lastInitial = lastName.length > 0 ? lastName.charAt(0) : '';
+
+            // Concatenating the first characters to create the desired string
+            const resultString = firstInitial.toUpperCase() + lastInitial.toUpperCase();
+
+            return resultString;
+        }
+
+
+        let listedPetPromise = fetch(`/api/v1/pets/listedpetsbyuser`);
+
+        let listedPetContainer = document.getElementById("listedPetContainer");
+
+        function printListedPets(data1) {
+            listedPetContainer.innerHTML = "";
+            for (i = 0; i < data1['data'].length; i++) {
+
+                let data = `<div class="block max-w-3xl mx-4 mt-8 lg:mt-12 bg-[#dbe7e7] border border-gray-200 rounded-lg shadow-lg">
+
+            <div
+                class="flex flex-col space-y-8 sm:space-y-0 sm:flex-row justify-center items-center py-0 md:py-3 px-2 md:px-3">
+
+                <img class=" rounded-t-lg h-64 w-48 rounded-lg mt-4 sm:mt-0"
+                    src="${data1['data'][i]['petImage']}" alt="">
+
+                <table class="text-center md:text-left">
+                    <tr>
+                        <td scope="row" class="px-10">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Name</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['petName'])}</p>
+                        </td>
+                        <td scope="row" class="hidden sm:block px-10 pt-3 sm:pt-0">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Gender</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['gender'])}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="px-10 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Bread</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['breed'])}</p>
+                        </td>
+                        <td scope="row" class="hidden sm:block px-10 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Age</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['age'])}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="block sm:hidden px-10 pt-3 sm:pt-0">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Gender</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['gender'])}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="block sm:hidden px-10 pt-3">
+                            <p class="font-medium text-xs text-gray-500 whitespace-nowrap">Age</p>
+                            <p class="whitespace-nowrap text-[#3f3f40] font-bold text-base">${capitalizeFirstLetter(data1['data'][i]['age'])}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="px-10 pt-3 text-center">
+                            <a href="/petprofile?petId=${data1['data'][i]['_id']}"
+                                class="inline-flex font-medium items-center text-gray-500 hover:underline whitespace-nowrap">
+                                View more details
+                                <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="adoptBtn${i}" class="flex justify-center mt-4 pt-3 md:pt-0">
+                                
+                                <button data-modal-target="popup-modal-markasadopted${i}" data-modal-toggle="popup-modal-markasadopted${i}"
+            class="block text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm px-5 py-2.5 text-center wow animate__animated animate__pulse animate__delay-1s"
+            type="button">
+            Mark as Adopted </button>                  
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>`
+
+
+                let modalHtml = `<div id="popup-modal-markasadopted${i}" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-[#fbf8f7] rounded-lg shadow">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="popup-modal-markasadopted${i}">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure want to
+                        mark ${capitalizeFirstLetter(data1['data'][i]['petName'])} as a adopted?</h3>
+                    
+                    <form action="/api/v1/pets/markasadopted" method="get" class="inline-block">
+                    <input type="hidden" name="petId" value="${data1['data'][i]['_id']}">
+                        <input data-modal-hide="popup-modal-markasadopted${i}" type="submit" value="Yes, I'm sure"
+                            class="text-white bg-[#3f3f40] hover:bg-[#2a2a2b] focus:ring-4 focus:outline-none focus:ring-[#5a5a5c] font-semibold rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center" />
+                    </form>
+
+                    <button data-modal-hide="popup-modal-markasadopted${i}" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium rounded-lg text-[#3f3f40] bg-[#fbf8f7] hover:bg-[#3f3f40] border border-[#3f3f40] hover:text-[#fbf8f7] focus:ring-2 focus:outline-none focus:ring-[#5a5a5c] font-semibold">No,
+                        cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+                listedPetContainer.innerHTML = listedPetContainer.innerHTML + data;
+                document.body.insertAdjacentHTML("beforeend", modalHtml);
+                //document.body.innerHTML += modalHtml;
+                //console.log("hello");
+                // +(i+1)+". "+items[i].value+
+
+                if(data1['data'][i]['adopted']){
+                    document.getElementById(`adoptBtn${i}`).innerHTML = `<h2 class="text-[#3f3f40] font-bold text-xl">${capitalizeFirstLetter(data1['data'][i]['petName'])} is adopted</h2>`;
+                }
+            }
+
+            // Add event listeners for modals
+            addModalEventListeners();
+        }
+
+        function addModalEventListeners() {
+            document.querySelectorAll('[data-modal-toggle]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.getAttribute('data-modal-toggle');
+                    document.getElementById(modalId).classList.remove('hidden');
+                    document.getElementById(modalId).classList.add('flex');
+                    document.getElementById(modalId).setAttribute('aria-modal', 'true');
+                    document.getElementById(modalId).setAttribute('role', 'dialog');
+
+
+                });
+            });
+
+            document.querySelectorAll('[data-modal-hide]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.getAttribute('data-modal-hide');
+                    document.getElementById(modalId).classList.add('hidden');
+                });
+            });
+        }
+
+        listedPetPromise.then((response) => {
+            return response.json();
+        }).then((data1) => {
+            console.log(data1);
+            if (data1['data'].length !== 0) {
+                printListedPets(data1);
+
+            }
+        });
+
+        function showProfileBtn(userId, userName) {
+
+            if (userId && userName) {
+                // User is logged in
+                document.getElementById("loginBtn").classList.add('hidden') // Show the login button
+
+                document.getElementById("userIcon").classList.remove('hidden') // Show the user icon
+            } else {
+                console.log(userId, userName);
+                console.log('User is not logged in')
+                // User is not logged in
+                document.getElementById("userIcon").classList.add('hidden') // Show the user icon
+
+                document.getElementById("loginBtn").classList.remove('hidden') // Show the login button
+            }
+        }
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>
