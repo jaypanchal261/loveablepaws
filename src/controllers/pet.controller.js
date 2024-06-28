@@ -97,7 +97,7 @@ const adoptPet = asyncHandler(async (req, res) => {
 
     // const options = { skip: skip, limit: limit }
 
-    const pets = await Pet.find({}).skip(skip).limit(limit).populate({
+    const pets = await Pet.find({ adopted : false}).skip(skip).limit(limit).populate({
         path: 'owner',
         select: '-password -refreshToken'
     });
@@ -155,6 +155,11 @@ const filterPet = asyncHandler(async (req, res) => {
             }
         },
         {
+            "$match":{
+                adopted: false
+            }
+        },
+        {
             "$match": matchStage
         },
         {
@@ -190,6 +195,11 @@ const searchPet = asyncHandler(async (req, res) => {
                 "localField": "owner",
                 "foreignField": "_id",
                 "as": "owner"
+            }
+        },
+        {
+            "$match":{
+                adopted: false
             }
         },
         {
