@@ -1,5 +1,5 @@
 
-# Loveable Paws
+# Loveable Paws 
 
 A Loveable Paws (Pet Adoption and Care Platform) is a comprehensive digital ecosystem designed to bridge the gap between animal shelters, foster homes, and individuals seeking to adopt pets.
 
@@ -7,7 +7,7 @@ This platform offers a range of innovative features to facilitate the adoption p
 
 The adoption process on the platform involves user registration, where pet owners, adopters, and shelters create profiles.
 
-- [Live link ](https://loveablepaws-rho.vercel.app/)
+[Live link ](https://loveablepaws-rho.vercel.app/)
 Use following credential for demo purpose.
 
 email : john @gmail.com
