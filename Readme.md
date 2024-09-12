@@ -44,7 +44,7 @@ password : 12345
 
 ## Authors
 
-- [@darshu1206](https://github.com/darshu1206)
+
 - [@jaypanchal261](https://github.com/jaypanchal261)
 
 
